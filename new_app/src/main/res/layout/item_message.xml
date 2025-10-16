@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="8dp">
+
+    <!-- 用户消息 -->
+    <LinearLayout
+        android:id="@+id/userMessageLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="end"> <!-- 右对齐 -->
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:background="@drawable/bg_user_message" > <!-- 你需要提供这个背景drawable -->
+
+            <TextView
+                android:id="@+id/userMessageTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="User Message"
+                android:textColor="@android:color/white"
+                android:padding="8dp"
+                android:layout_gravity="end" />
+
+            <!-- ImageView for user image (initially GONE) -->
+            <ImageView
+                android:id="@+id/userMessageImageView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:maxWidth="200dp"
+                android:maxHeight="200dp"
+                android:adjustViewBounds="true"
+                android:scaleType="fitEnd"
+                android:visibility="gone" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <!-- AI消息 -->
+    <LinearLayout
+        android:id="@+id/aiMessageLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="start"> <!-- 左对齐 -->
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:background="@drawable/bg_ai_message" > <!-- 你需要提供这个背景drawable -->
+
+            <TextView
+                android:id="@+id/aiMessageTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="AI Message"
+                android:textColor="@android:color/black"
+                android:padding="8dp"
+                android:layout_gravity="start" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

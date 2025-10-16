@@ -1,0 +1,56 @@
+plugins {
+    alias(libs.plugins.android.application)
+}
+
+android {
+    namespace 'com.dyk.new_app'
+    compileSdk 36
+
+    defaultConfig {
+        applicationId "com.dyk.new_app"
+        minSdk 28
+        targetSdk 36
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
+    }
+}
+
+dependencies {
+
+    implementation libs.appcompat
+    implementation libs.material
+    implementation libs.activity
+    implementation libs.constraintlayout
+    testImplementation libs.junit
+    androidTestImplementation libs.ext.junit
+    androidTestImplementation libs.espresso.core
+
+    // 数据库操作
+    def room_version = "2.6.1"
+    implementation "androidx.room:room-runtime:$room_version"
+    annotationProcessor "androidx.room:room-compiler:$room_version"
+
+    implementation 'com.squareup.okhttp3:okhttp:4.12.0'
+    implementation 'com.squareup.okhttp3:logging-interceptor:4.12.0'
+    implementation 'com.google.code.gson:gson:2.10.1'
+
+    // 渲染 markdown 内容
+    implementation 'io.noties.markwon:core:4.6.2' // 核心库
+    implementation 'io.noties.markwon:ext-strikethrough:4.6.2' // 删除线支持
+    implementation 'io.noties.markwon:ext-tables:4.6.2' // 表格支持
+    implementation 'io.noties.markwon:ext-tasklist:4.6.2' // 任务列表支持
+    implementation 'io.noties.markwon:linkify:4.6.2' //自动识别和链接化 URL
+}

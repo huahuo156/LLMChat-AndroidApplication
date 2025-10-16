@@ -1,0 +1,46 @@
+<!-- res/layout/item_message_thinking.xml -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/thinkingLayout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:padding="8dp"
+    android:gravity="start"> <!-- 与 AI 消息对齐 -->
+
+    <!-- 包含思考内容的布局，使用与 AI 消息相同的背景 -->
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:background="@drawable/bg_ai_message">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:padding="8dp"> <!-- 与 AI 消息文本的 padding 一致 -->
+
+        <ProgressBar
+            android:id="@+id/thinkingProgressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:indeterminate="true"
+            android:scaleX="0.8"
+            android:scaleY="0.8" />
+
+        <TextView
+            android:id="@+id/thinkingTextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="AI 正在思考..."
+            android:textSize="14sp"
+            android:textColor="@android:color/black" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+</LinearLayout>
