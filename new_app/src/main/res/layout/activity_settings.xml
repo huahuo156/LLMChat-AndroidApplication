@@ -11,14 +11,24 @@
         android:text="设置"
         android:textSize="24sp"
         android:textStyle="bold"
-        android:layout_marginBottom="24dp" />
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="20dp"
+        />
+
+    <!-- 分隔线 -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray" />
 
     <Button
         android:id="@+id/clearConversationButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="清除当前对话"
-        android:layout_marginBottom="16dp" />
+        android:layout_marginBottom="16dp"
+        android:layout_marginTop="20dp"
+        />
 
     <TextView
         android:layout_width="wrap_content"
@@ -35,7 +45,7 @@
         android:gravity="top"
         android:hint="请输入系统提示词..."
         android:inputType="textMultiLine"
-        android:background="@drawable/bg_ai_message" /> <!-- 你可能需要定义一个背景drawable -->
+        android:background="@drawable/edit_text_background" /> <!-- 你可能需要定义一个背景drawable -->
 
     <Button
         android:id="@+id/saveSystemPromptButton"

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<network-security-config>
+    <!-- 允许对特定 IP 地址进行 CLEARTEXT 通信 -->
+    <domain-config cleartextTrafficPermitted="true">
+        <domain includeSubdomains="true">10.138.7.65</domain>
+    </domain-config>
+
+    <!-- 或者，允许对所有域名进行 CLEARTEXT 通信（非常不推荐用于生产环境） -->
+    <base-config cleartextTrafficPermitted="true">
+        <trust-anchors>
+            <certificates src="system" />
+            <certificates src="user" />
+        </trust-anchors>
+    </base-config>
+</network-security-config>

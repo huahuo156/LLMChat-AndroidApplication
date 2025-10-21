@@ -4,11 +4,23 @@ import java.util.UUID;
 
 public class Message {
     private String text;
-    private boolean isUser; // true for user, false for AI
+    private boolean isUser;
     private String imagePath;
     private String id;
     public boolean isThinking;
+    private String filePath;
+    private String fileMimeType;
 
+    // 构造函数 (普通消息，包含文件)
+    public Message(String text, boolean isUser, String imagePath, String filePath, String fileMimeType) { // 👈 修改构造函数
+        this.text = text;
+        this.isUser = isUser;
+        this.imagePath = imagePath;
+        this.filePath = filePath; // 👈 设置文件路径
+        this.fileMimeType = fileMimeType; // 👈 设置文件类型
+        this.id = UUID.randomUUID().toString();
+        this.isThinking = false;
+    }
     public Message(String text, boolean isUser, String imagePath) {
         this.text = text;
         this.isUser = isUser;
@@ -16,7 +28,6 @@ public class Message {
         this.id = UUID.randomUUID().toString(); // 生成一个随机的 UUID 字符串
         this.isThinking = false;
     }
-
     public Message(String id, boolean isThinking) { // 可以考虑传入一些描述信息，但这里简化
         this.text = "AI 正在思考..."; // 或者可以不设置 text，由 Adapter 处理
         this.isUser = false; // 思考状态属于 AI
@@ -28,21 +39,19 @@ public class Message {
     public String getText() {
         return text;
     }
-
     public void setText(String text){
         this.text = text;
     }
-
     public boolean isUser() {
         return isUser;
     }
-
     public String getImagePath() {
         return imagePath;
     }
     public String getId(){return this.id;}
     public void setId(String id){this.id = id;}
-
+    public String getFilePath() { return filePath; }
+    public String getFileMimeType() { return fileMimeType; }
     public boolean isThinking(){return this.isThinking;}
     public void setThinking(boolean isThinking){this.isThinking=isThinking;}
 

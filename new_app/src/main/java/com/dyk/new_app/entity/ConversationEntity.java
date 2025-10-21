@@ -39,4 +39,7 @@ public class ConversationEntity {
 
     public String getSystemPrompt() { return systemPrompt; }
     public void setSystemPrompt(String systemPrompt) { this.systemPrompt = systemPrompt; }
+    public static String getDefault_sys_prompt(){
+        return default_sys_prompt;
+    }
 }

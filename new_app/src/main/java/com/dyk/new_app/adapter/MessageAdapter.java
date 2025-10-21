@@ -17,12 +17,18 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.dyk.new_app.R;
 import com.dyk.new_app.entity.Message;
 
+import java.io.File;
 import java.util.List;
 
 import io.noties.markwon.Markwon;
 import io.noties.markwon.ext.strikethrough.StrikethroughPlugin;
 import io.noties.markwon.ext.tables.TablePlugin;
 import io.noties.markwon.linkify.LinkifyPlugin;
+
+/*
+  MessageAdapter 将消息列表 messageList 中的内容 渲染在 UI 上
+  支持 markdown 渲染、图片缩略图、文件缩略图(不支持点击缩略图查看文件或文件详情)
+ */
 
 public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageViewHolder> {
 
@@ -31,6 +37,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageV
     private static final int VIEW_TYPE_THINKING = 2;
     private final List<Message> messageList;
     private final Markwon markwon; // Markwon 实例
+    private static final String TAG = "MessageAdapter";
 
     public MessageAdapter(List<Message> messageList, Context context) {
         this.messageList = messageList;
@@ -100,6 +107,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageV
         }
 
         // 👇 根据消息类型设置 UI
+        // 用户信息
         if (viewType == VIEW_TYPE_USER) {
             // 设置用户消息布局可见
             if (holder.userMessageLayout != null) holder.userMessageLayout.setVisibility(View.VISIBLE);
@@ -107,6 +115,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageV
 
             if (holder.userMessageImageView != null) { // 检查 ImageView 是否存在
                 String imagePath = message.getImagePath();
+                String filePath = message.getFilePath();
                 if (imagePath != null && !imagePath.isEmpty()) {
                     Bitmap bitmap = loadBitmapFromFile(imagePath, holder.userMessageImageView);
                     if (bitmap != null) {
@@ -116,7 +125,14 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageV
                         holder.userMessageImageView.setVisibility(View.GONE);
                         Log.e("MessageAdapter", "Failed to load bitmap from path for user message at position: " + position + ", Path: " + imagePath);
                     }
-                } else {
+                } else if(filePath != null && !filePath.isEmpty()){
+                    String fileName = new File(filePath).getName();
+                    Log.d(TAG, "onBindViewHolder: fileName :"+fileName);
+                    holder.userMessageImageView.setImageResource(R.drawable.file_present_24px);
+                    holder.userMessageTextView.setText(fileName);
+                    holder.userMessageImageView.setVisibility(View.VISIBLE);
+                    holder.userMessageTextView.setVisibility(View.VISIBLE);
+                }else {
                     holder.userMessageImageView.setVisibility(View.GONE);
                 }
             }
@@ -139,10 +155,6 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageV
                 holder.thinkingProgressBar.setVisibility(View.VISIBLE);
                 holder.thinkingProgressBar.setIndeterminate(true);
             }
-            // 如果 thinking layout 里有 TextView，也可以设置文字 (需要先检查)
-            // if (holder.thinkingTextView != null) {
-            //     holder.thinkingTextView.setText(message.getText()); // "AI 正在思考..."
-            // }
         }
     }
 

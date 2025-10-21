@@ -1,5 +1,7 @@
 package com.dyk.new_app;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
@@ -59,8 +61,13 @@ public class SettingsActivity extends AppCompatActivity {
                 // 保存到数据库
                 executorService.execute(() -> {
                     database.conversationDao().updateSystemPromptForConversation(currentConversationId, newPrompt);
+                    // 👇 创建 Intent 返回数据
+                    Intent resultIntent = new Intent();
+                    resultIntent.putExtra("SYSTEM_PROMPT", newPrompt); // 返回新的提示词
+                    setResult(Activity.RESULT_OK, resultIntent); // 设置结果
                     runOnUiThread(() -> {
                         Toast.makeText(SettingsActivity.this, "系统提示词已保存", Toast.LENGTH_SHORT).show();
+                        finish(); // 关闭设置页面
                     });
                 });
             } else {

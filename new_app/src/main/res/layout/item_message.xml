@@ -30,6 +30,7 @@
                 android:layout_gravity="end" />
 
             <!-- ImageView for user image (initially GONE) -->
+            <!-- ImageView for user file (initially GONE) -->
             <ImageView
                 android:id="@+id/userMessageImageView"
                 android:layout_width="wrap_content"
@@ -37,8 +38,11 @@
                 android:maxWidth="200dp"
                 android:maxHeight="200dp"
                 android:adjustViewBounds="true"
-                android:scaleType="fitEnd"
-                android:visibility="gone" />
+                android:scaleType="fitStart"
+                android:src="@drawable/file_present_24px"
+                android:layout_gravity="end"
+                android:visibility="gone"
+                />
 
         </LinearLayout>
 
